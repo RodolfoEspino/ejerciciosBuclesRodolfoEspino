@@ -29,7 +29,7 @@
 
   <div class="container2">
     <h2>Convertidor de Divisas</h2>
-    <h4>Dolar a pesoso Mexicanos</h4>
+    <h4>Dolar a pesos Mexicanos</h4>
     <form id="divisas">
       <div class="form-group">
         <label for="dollar">Dollar:</label>
@@ -37,9 +37,8 @@
       </div>
       <button type="submit">Convertir divisas</button>
     </form>
-    <h5>Resultads</h5>
+    <h5>Resultados</h5>
     <div id="cambio"></div>
-
   </div>
 
   <div class="block">
@@ -47,38 +46,29 @@
       <h3>Block de notas</h3>
     </div>
 
-    
-
     <div class="container3">
       <div class="formNota">
         <h3>Nueva nota</h3>
         <label for="titulo">Titulo:</label>
         <input type="text" id="titulo">
-  
-        <label for="texto">Escriba su nota aqui!!!</label>
+
+        <label for="texto">Escriba su nota aquí:</label>
         <textarea name="nota" id="texto"></textarea>
-  
-        <button onclick="guardarNota()">Guardar</button>
-        <button onclick="limpiarCampos()">Borrar</button>
-  
+
+        <button id="guardarNota">Guardar</button>
+        <button id="borrarNota">Borrar</button>
       </div>
 
       <div class="filter">
-        
         <label for="filtroTexto">Buscar</label>
-        <input type="text" id="filtroTexto" onkeyup="aplicarFiltros()">
-  
+        <input type="text" id="filtroTexto">
+
         <label for="filtroRealizadas">
-          <input type="checkbox" id="filtroRealizadas" onchange="aplicarFiltros()"> Realizadas
+          <input type="checkbox" id="filtroRealizadas"> Realizadas
         </label>
       </div>
-  
-      
     </div>
-    <div id="contenedorNotas">
-
-    </div>
-    
+    <div id="contenedorNotas"></div>
   </div>
 
   <script src="script.js"></script>

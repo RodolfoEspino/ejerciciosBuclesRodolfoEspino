@@ -49,7 +49,7 @@ const laDivisa = (pesosMexicanos) => {
 
 let notas = []
 
-// b. Agregar un par de notas de prueba
+//  Agregar un par de notas de prueba
 notas.push({
   id: 1,
   titulo: 'Sacar la basura',
@@ -62,58 +62,58 @@ notas.push({
   texto: 'comprar leche, papel de baño, pasta dental, jabon, etc',
   realizada: false
 })
-// notas.push({
-//   id: 3,
-//   titulo: 'Sacar la basura',
-//   texto: 'Mi mamá se va a cabrear si no lo hago',
-//   realizada: false
-// })
-// notas.push({
-//   id: 4,
-//   titulo: 'Sacar la basura',
-//   texto: 'Mi mamá se va a cabrear si no lo hago',
-//   realizada: false
-// })
-// notas.push({
-//   id: 5,
-//   titulo: 'Sacar la basura',
-//   texto: 'Mi mamá se va a cabrear si no lo hago',
-//   realizada: false
-// })
-// notas.push({
-//   id: 6,
-//   titulo: 'Sacar la basura',
-//   texto: 'Mi mamá se va a cabrear si no lo hago',
-//   realizada: false
-// })
 
 
 //  variable global
-let idGlobal = 2; // El último ID creado manualmente fue 2
+let idGlobal = 2
 
 const contenedorNotas = document.getElementById('contenedorNotas')
 
 //Función para pintar las notas en forma de tarjetas dentro del contenedor
 function pintarNotas() {
-  contenedorNotas.innerHTML = ''
+  contenedorNotas.innerHTML = '';
 
   if (notas.length === 0) {
-    contenedorNotas.innerHTML = '<p>NO HAY NOTAS PARA MOSTRAR</p>'
-    return
+    contenedorNotas.innerHTML = '<p>NO HAY NOTAS PARA MOSTRAR</p>';
+    return;
   }
 
   notas.forEach(nota => {
-    const notaHTML = `
-      <div class="nota">
-        <h2>${nota.titulo}</h2>
-        <p>${nota.texto}</p>
-        <p>Realizada: <input type="checkbox" onclick="marcarRealizada(${nota.id})" ${nota.realizada ? 'checked' : ''}></p>
-        <button onclick="borrarNota(${nota.id})">Borrar Nota</button>
-      </div>
-    `;
-    contenedorNotas.innerHTML += notaHTML
+    const divNota = document.createElement('div');
+    divNota.classList.add('nota');
+
+    const h2 = document.createElement('h2');
+    h2.textContent = nota.titulo;
+
+    const pTexto = document.createElement('p');
+    pTexto.textContent = nota.texto;
+
+    const pRealizada = document.createElement('p');
+    pRealizada.textContent = 'Realizada: ';
+
+    const checkboxRealizada = document.createElement('input');
+    checkboxRealizada.type = 'checkbox';
+    checkboxRealizada.checked = nota.realizada;
+    checkboxRealizada.addEventListener('click', function() {
+      marcarRealizada(nota.id);
+    });
+
+    const buttonBorrar = document.createElement('button');
+    buttonBorrar.textContent = 'Borrar Nota';
+    buttonBorrar.addEventListener('click', function() {
+      borrarNota(nota.id);
+    });
+
+    pRealizada.appendChild(checkboxRealizada);
+    divNota.appendChild(h2);
+    divNota.appendChild(pTexto);
+    divNota.appendChild(pRealizada);
+    divNota.appendChild(buttonBorrar);
+
+    contenedorNotas.appendChild(divNota);
   });
 }
+
 
 // Función para agregar una nueva nota
 function agregarNota(titulo, texto) {
@@ -128,7 +128,7 @@ function agregarNota(titulo, texto) {
   pintarNotas()
 }
 
-// Función para guardar la nota desde la interfaz
+// Función para guardar la nota 
 function guardarNota() {
   let titulo = document.getElementById('titulo').value
   let texto = document.getElementById('texto').value
@@ -148,7 +148,7 @@ function limpiarCampos() {
   document.getElementById('texto').value = ''
 }
 
-// Función para borrar una nota por ID
+// Función para borrar una nota 
 function borrarNota(id) {
   notas = notas.filter(nota => nota.id !== id)
   pintarNotas()
@@ -161,49 +161,71 @@ function marcarRealizada(id) {
   pintarNotas()
 }
 
-// Función para aplicar los filtros de texto y realizadas
-document.addEventListener('DOMContentLoaded', function () {
-  let filtroTexto = ''
-  let mostrarRealizadas = false
+document.addEventListener('DOMContentLoaded', function() {
+  let filtroTexto = '';
+  let mostrarRealizadas = false;
 
-  const contenedorNotas = document.getElementById('contenedorNotas')
+  const contenedorNotas = document.getElementById('contenedorNotas');
 
   // Función para aplicar los filtros
   function aplicarFiltros() {
-    filtroTexto = document.getElementById('filtroTexto').value.trim().toLowerCase()
-
-    mostrarRealizadas = document.getElementById('filtroRealizadas').checked
+    filtroTexto = document.getElementById('filtroTexto').value.trim().toLowerCase();
+    mostrarRealizadas = document.getElementById('filtroRealizadas').checked;
 
     let notasFiltradas = notas.filter(nota => {
       const textoCoincide = nota.titulo.toLowerCase().includes(filtroTexto) ||
-        nota.texto.toLowerCase().includes(filtroTexto)
+                            nota.texto.toLowerCase().includes(filtroTexto);
 
-      const cumpleRealizada = mostrarRealizadas ? nota.realizada : true
+      const cumpleRealizada = mostrarRealizadas ? nota.realizada : true;
 
-      return textoCoincide && cumpleRealizada
-    })
+      return textoCoincide && cumpleRealizada;
+    });
 
-    mostrarNotas(notasFiltradas)
+    mostrarNotas(notasFiltradas);
   }
 
   // Función para mostrar las notas en el contenedor
   function mostrarNotas(notasAMostrar) {
-    contenedorNotas.innerHTML = ''
+    contenedorNotas.innerHTML = '';
+
     if (notasAMostrar.length === 0) {
       contenedorNotas.innerHTML = '<p>NO HAY NOTAS PARA MOSTRAR</p>'
       return
     }
 
     notasAMostrar.forEach(nota => {
-      const notaHTML = `
-        <div class="nota">
-          <h2>${nota.titulo}</h2>
-          <p>${nota.texto}</p>
-          <p>Realizada: <input type="checkbox" onclick="marcarRealizada(${nota.id})" ${nota.realizada ? 'checked' : ''}></p>
-          <button onclick="borrarNota(${nota.id})">Borrar Nota</button>
-        </div>
-      `
-      contenedorNotas.innerHTML += notaHTML
+      const divNota = document.createElement('div')
+      divNota.classList.add('nota')
+
+      const h2 = document.createElement('h2')
+      h2.textContent = nota.titulo
+
+      const pTexto = document.createElement('p')
+      pTexto.textContent = nota.texto
+
+      const pRealizada = document.createElement('p')
+      pRealizada.textContent = 'Realizada: '
+
+      const checkboxRealizada = document.createElement('input')
+      checkboxRealizada.type = 'checkbox'
+      checkboxRealizada.checked = nota.realizada
+      checkboxRealizada.addEventListener('change', function() {
+        marcarRealizada(nota.id)
+      })
+
+      const buttonBorrar = document.createElement('button')
+      buttonBorrar.textContent = 'Borrar Nota'
+      buttonBorrar.addEventListener('click', function() {
+        borrarNota(nota.id)
+      })
+
+      pRealizada.appendChild(checkboxRealizada)
+      divNota.appendChild(h2)
+      divNota.appendChild(pTexto)
+      divNota.appendChild(pRealizada)
+      divNota.appendChild(buttonBorrar)
+
+      contenedorNotas.appendChild(divNota)
     })
   }
 
@@ -211,8 +233,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
   document.getElementById('filtroRealizadas').addEventListener('change', aplicarFiltros)
 
-  mostrarNotas(notas)
-})
+  mostrarNotas(notas);
+});
+
+function marcarRealizada(id) {
+}
+
+function borrarNota(id) {
+}
+
 
 
 
