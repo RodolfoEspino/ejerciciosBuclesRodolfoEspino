@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calculadora de IMC</title>
+  <title>Eventos</title>
   <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
-    <h1> Ejercicios Eventos</h1>
+  <h1> Ejercicios Eventos</h1>
   <div class="container">
     <h2>Calculadora de Índice de Masa Corporal (IMC)</h2>
     <form id="imcForm">
-        <div class="form-group">
-            <label for="altura">Altura (cm):</label>
-            <input type="number" id="altura" name="altura" required>
-        </div>
-        <div class="form-group">
-          <label for="peso">Peso (kg):</label>
-          <input type="number" id="peso" name="peso" required>
-        </div>
+      <div class="form-group">
+        <label for="altura">Altura (cm):</label>
+        <input type="number" id="altura" name="altura" required>
+      </div>
+      <div class="form-group">
+        <label for="peso">Peso (kg):</label>
+        <input type="number" id="peso" name="peso" required>
+      </div>
       <button type="submit">Calcular IMC</button>
     </form>
     <h5>Resultado</h5>
@@ -29,17 +31,57 @@
     <h2>Convertidor de Divisas</h2>
     <h4>Dolar a pesoso Mexicanos</h4>
     <form id="divisas">
-        <div class="form-group">
-            <label for="dollar">Dollar:</label>
-            <input type="number" id="dollar" name="dollar" min="0" step="0.01" required>
-        </div>
+      <div class="form-group">
+        <label for="dollar">Dollar:</label>
+        <input type="number" id="dollar" name="dollar" min="0" step="0.01" required>
+      </div>
       <button type="submit">Convertir divisas</button>
     </form>
     <h5>Resultads</h5>
     <div id="cambio"></div>
 
   </div>
+
+  <div class="block">
+    <div class="titulo">
+      <h3>Block de notas</h3>
+    </div>
+
+    
+
+    <div class="container3">
+      <div class="formNota">
+        <h3>Nueva nota</h3>
+        <label for="titulo">Titulo:</label>
+        <input type="text" id="titulo">
   
+        <label for="texto">Escriba su nota aqui!!!</label>
+        <textarea name="nota" id="texto"></textarea>
+  
+        <button onclick="guardarNota()">Guardar</button>
+        <button onclick="limpiarCampos()">Borrar</button>
+  
+      </div>
+
+      <div class="filter">
+        
+        <label for="filtroTexto">Buscar</label>
+        <input type="text" id="filtroTexto" onkeyup="aplicarFiltros()">
+  
+        <label for="filtroRealizadas">
+          <input type="checkbox" id="filtroRealizadas" onchange="aplicarFiltros()"> Realizadas
+        </label>
+      </div>
+  
+      
+    </div>
+    <div id="contenedorNotas">
+
+    </div>
+    
+  </div>
+
   <script src="script.js"></script>
 </body>
+
 </html>

@@ -76,4 +76,48 @@
     border-radius: 3px;
     font-weight: bolder;
   }
-  
+  /* css block de notas */
+
+  .block{
+    width: 100%;
+    border: 3px solid black
+  }
+  .titulo{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    text-align: center;
+  }
+  #contenedorNotas{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .container3{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .nota, .formNota {
+    width: 30%;
+    border: 1px solid #0f0f0f;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  .filter{
+    width: 30%;
+    border: 1px solid #0f0f0f;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  .nota h2 {
+    margin-top: 0;
+  }
+  .nota p {
+    margin-bottom: 5px;
+  }
