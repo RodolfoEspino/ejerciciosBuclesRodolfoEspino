@@ -102,10 +102,19 @@ button:hover {
 }
 
 .nota,
-.formNota,
-.filter {
+.filter{
   width: 30%;
-  border: 1px solid #0f0f0f;
+  border: 2px solid #0f0f0f;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.formNota {
+  width: 50%;
+  height: 60vh;
+  border: 2px solid #0f0f0f;
   padding: 10px;
   margin: 10px;
   border-radius: 5px;
