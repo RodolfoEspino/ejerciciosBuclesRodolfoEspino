@@ -6,7 +6,7 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
+  background-color: #4b4444;
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -22,7 +22,7 @@ h1 {
 
 .container,
 .container2 {
-  background-color: #fff;
+  background-color: #eb5353;
   padding: 20px;
   border: black solid 1px;
   border-radius: 5px;
@@ -108,7 +108,7 @@ button:hover {
   padding: 10px;
   margin: 10px;
   border-radius: 5px;
-  background-color: #f9f9f9;
+  background-color:  #eb5353;
 }
 
 .formNota {
@@ -118,7 +118,7 @@ button:hover {
   padding: 10px;
   margin: 10px;
   border-radius: 5px;
-  background-color: #f9f9f9;
+  background-color:  #eb5353;
 }
 
 .nota h2 {
