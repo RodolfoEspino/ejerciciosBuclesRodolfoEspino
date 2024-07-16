@@ -1,33 +1,33 @@
 document.addEventListener('DOMContentLoaded', function () {
-
-  const imcForm = document.getElementById('imcForm')
+  const imcForm = document.getElementById('imcForm');
   imcForm.addEventListener('submit', function (event) {
     event.preventDefault();
 
     const peso = parseFloat(document.getElementById('peso').value);
-    const altura = parseFloat(document.getElementById('altura').value) / 100
-    const imc = peso / (altura * altura)
+    const altura = parseFloat(document.getElementById('altura').value) / 100;
+    const imc = peso / (altura * altura);
 
-    mostrarResultado(imc)
+    mostrarResultado(imc);
   });
 
   function mostrarResultado(imc) {
-    let resultado = ''
+    let resultado = '';
 
     if (imc < 18.5) {
-      resultado = `Tu IMC es ${imc.toFixed(1)} (Peso inferior al normal)`
+      resultado = `Tu IMC es ${imc.toFixed(1)} (Peso inferior al normal)`;
     } else if (imc >= 18.5 && imc < 25) {
-      resultado = `Tu IMC es ${imc.toFixed(1)} (Peso normal)`
+      resultado = `Tu IMC es ${imc.toFixed(1)} (Peso normal)`;
     } else if (imc >= 25 && imc < 30) {
-      resultado = `Tu IMC es ${imc.toFixed(1)} (Sobrepeso)`
+      resultado = `Tu IMC es ${imc.toFixed(1)} (Sobrepeso)`;
     } else {
-      resultado = `Tu IMC es ${imc.toFixed(1)} (Obesidad)`
+      resultado = `Tu IMC es ${imc.toFixed(1)} (Obesidad)`;
     }
 
-    document.getElementById('resultado').textContent = resultado
+    document.getElementById('resultado').innerHTML = resultado;
   }
-})
-  // js divisas
+});
+
+//  js divisas
   const divisasForm = document.getElementById('divisas')
   divisasForm.addEventListener('submit', function (event) {
     event.preventDefault()
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function mostrarDivisas(pesosMexicanos) {
     const resultado = `Equivale a: ${pesosMexicanos.toFixed(2)} pesos Mexicanos`
-    document.getElementById('cambio').textContent = resultado
+    document.getElementById('cambio').innerHTML = resultado
   }
 
   // js block de notas
@@ -59,38 +59,15 @@ function pintarNotas(notasAMostrar) {
   }
 
   notasAMostrar.forEach(nota => {
-    const divNota = document.createElement('div');
-    divNota.classList.add('nota');
-
-    const h2 = document.createElement('h2');
-    h2.textContent = nota.titulo;
-
-    const pTexto = document.createElement('p');
-    pTexto.textContent = nota.texto;
-
-    const pRealizada = document.createElement('p');
-    pRealizada.textContent = 'Realizada: ';
-
-    const checkboxRealizada = document.createElement('input');
-    checkboxRealizada.type = 'checkbox';
-    checkboxRealizada.checked = nota.realizada;
-    checkboxRealizada.addEventListener('change', function() {
-      marcarRealizada(nota.id);
-    });
-
-    const buttonBorrar = document.createElement('button');
-    buttonBorrar.textContent = 'Borrar Nota';
-    buttonBorrar.addEventListener('click', function() {
-      borrarNota(nota.id);
-    });
-
-    pRealizada.appendChild(checkboxRealizada);
-    divNota.appendChild(h2);
-    divNota.appendChild(pTexto);
-    divNota.appendChild(pRealizada);
-    divNota.appendChild(buttonBorrar);
-
-    contenedorNotas.appendChild(divNota);
+    let notaHTML = `
+      <div class="nota">
+        <h2>${nota.titulo}</h2>
+        <p>${nota.texto}</p>
+        <p>Realizada: <input type="checkbox" ${nota.realizada ? 'checked' : ''} onchange="marcarRealizada(${nota.id})"></p>
+        <button onclick="borrarNota(${nota.id})">Borrar Nota</button>
+      </div>
+    `;
+    contenedorNotas.innerHTML += notaHTML;
   });
 }
 
@@ -106,6 +83,21 @@ function agregarNota(titulo, texto) {
   notas.push(nuevaNota);
   pintarNotas(notas);
 }
+
+// Agregar notas de prueba
+notas.push({
+  id: 1,
+  titulo: 'Sacar la basura',
+  texto: 'Mi mamá se va a cabrear si no lo hago',
+  realizada: false
+});
+
+notas.push({
+  id: 2,
+  titulo: 'Ir al super',
+  texto: 'Comprar leche, papel de baño, pasta dental, jabón, etc',
+  realizada: false
+});
 
 // Función para limpiar los campos de título y texto
 function limpiarCampos() {
@@ -167,22 +159,10 @@ document.addEventListener('DOMContentLoaded', function() {
     limpiarCampos();
   });
 
-  // Agregar notas de prueba
-  notas.push({
-    id: 1,
-    titulo: 'Sacar la basura',
-    texto: 'Mi mamá se va a cabrear si no lo hago',
-    realizada: false
-  });
-
-  notas.push({
-    id: 2,
-    titulo: 'Ir al super',
-    texto: 'Comprar leche, papel de baño, pasta dental, jabón, etc',
-    realizada: false
-  });
+  
 
   pintarNotas(notas);
 });
 
 
+inner
