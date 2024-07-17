@@ -50,19 +50,20 @@ let idGlobal = 2;
 
 // Función para pintar las notas en el contenedor
 function pintarNotas(notasAMostrar) {
-  const contenedorNotas = document.getElementById('contenedorNotas');
-  contenedorNotas.innerHTML = '';
+  const contenedorNotas = document.getElementById('contenedorNotas')
+  contenedorNotas.innerHTML = ''
 
   if (notasAMostrar.length === 0) {
-    contenedorNotas.innerHTML = '<p>NO HAY NOTAS PARA MOSTRAR</p>';
+    contenedorNotas.innerHTML = '<p>NO HAY NOTAS PARA MOSTRAR</p>'
     return;
   }
 
   notasAMostrar.forEach(nota => {
+    
     let notaHTML = `
-      <div class="nota">
-        <h2>${nota.titulo}</h2>
-        <p>${nota.texto}</p>
+   <div class="nota">
+        <h2 class="${nota.realizada ? 'realizada' : ''}">${nota.titulo}</h2>
+        <p class="${nota.realizada ? 'realizada' : ''}">${nota.texto}</p>
         <p>Realizada: <input type="checkbox" ${nota.realizada ? 'checked' : ''} onchange="marcarRealizada(${nota.id})"></p>
         <button onclick="borrarNota(${nota.id})">Borrar Nota</button>
       </div>

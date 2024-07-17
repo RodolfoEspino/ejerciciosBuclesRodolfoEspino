@@ -110,6 +110,10 @@ button:hover {
   border-radius: 5px;
   background-color:  #eb5353;
 }
+.nota .realizada {
+  text-decoration: line-through;
+}
+
 
 .formNota {
   width: 50%;
