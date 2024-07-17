@@ -4,26 +4,26 @@ document.addEventListener('DOMContentLoaded', function () {
     event.preventDefault();
 
     const peso = parseFloat(document.getElementById('peso').value);
-    const altura = parseFloat(document.getElementById('altura').value) / 100;
-    const imc = peso / (altura * altura);
+    const altura = parseFloat(document.getElementById('altura').value) / 100
+    const imc = peso / (altura * altura)
 
-    mostrarResultado(imc);
+    mostrarResultado(imc)
   });
 
   function mostrarResultado(imc) {
-    let resultado = '';
+    let resultado = ''
 
     if (imc < 18.5) {
-      resultado = `Tu IMC es ${imc.toFixed(1)} (Peso inferior al normal)`;
+      resultado = `Tu IMC es ${imc.toFixed(1)} (Peso inferior al normal)`
     } else if (imc >= 18.5 && imc < 25) {
-      resultado = `Tu IMC es ${imc.toFixed(1)} (Peso normal)`;
+      resultado = `Tu IMC es ${imc.toFixed(1)} (Peso normal)`
     } else if (imc >= 25 && imc < 30) {
-      resultado = `Tu IMC es ${imc.toFixed(1)} (Sobrepeso)`;
+      resultado = `Tu IMC es ${imc.toFixed(1)} (Sobrepeso)`
     } else {
-      resultado = `Tu IMC es ${imc.toFixed(1)} (Obesidad)`;
+      resultado = `Tu IMC es ${imc.toFixed(1)} (Obesidad)`
     }
 
-    document.getElementById('resultado').innerHTML = resultado;
+    document.getElementById('resultado').innerHTML = resultado
   }
 });
 
@@ -45,8 +45,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // js block de notas
  // Declaración de variables globales
-let notas = [];
-let idGlobal = 2;
+let notas = []
+let idGlobal = 2
 
 // Función para pintar las notas en el contenedor
 function pintarNotas(notasAMostrar) {
@@ -68,7 +68,7 @@ function pintarNotas(notasAMostrar) {
         <button onclick="borrarNota(${nota.id})">Borrar Nota</button>
       </div>
     `;
-    contenedorNotas.innerHTML += notaHTML;
+    contenedorNotas.innerHTML += notaHTML
   });
 }
 
@@ -81,8 +81,8 @@ function agregarNota(titulo, texto) {
     texto: texto,
     realizada: false
   };
-  notas.push(nuevaNota);
-  pintarNotas(notas);
+  notas.push(nuevaNota)
+  pintarNotas(notas)
 }
 
 // Agregar notas de prueba
@@ -102,68 +102,65 @@ notas.push({
 
 // Función para limpiar los campos de título y texto
 function limpiarCampos() {
-  document.getElementById('titulo').value = '';
-  document.getElementById('texto').value = '';
+  document.getElementById('titulo').value = ''
+  document.getElementById('texto').value = ''
 }
 
 // Función para borrar una nota
 function borrarNota(id) {
-  notas = notas.filter(nota => nota.id !== id);
-  pintarNotas(notas);
+  notas = notas.filter(nota => nota.id !== id)
+  pintarNotas(notas)
 }
 
 // Función para marcar una nota como realizada o no realizada
 function marcarRealizada(id) {
-  let nota = notas.find(nota => nota.id === id);
-  nota.realizada = !nota.realizada;
-  pintarNotas(notas);
+  let nota = notas.find(nota => nota.id === id)
+  nota.realizada = !nota.realizada
+  pintarNotas(notas)
 }
 
 // Función para aplicar los filtros
 function aplicarFiltros() {
-  let textoFiltro = filtroTexto.value.trim().toLowerCase();
-  let mostrarRealizadas = filtroRealizadas.checked;
+  let textoFiltro = filtroTexto.value.trim().toLowerCase()
+  let mostrarRealizadas = filtroRealizadas.checked
 
   let notasFiltradas = notas.filter(nota => {
     const textoCoincide = nota.titulo.toLowerCase().includes(textoFiltro) ||
-                          nota.texto.toLowerCase().includes(textoFiltro);
+                          nota.texto.toLowerCase().includes(textoFiltro)
 
-    const cumpleRealizada = mostrarRealizadas ? nota.realizada : true;
+    const cumpleRealizada = mostrarRealizadas ? nota.realizada : true
 
-    return textoCoincide && cumpleRealizada;
+    return textoCoincide && cumpleRealizada
   });
 
-  pintarNotas(notasFiltradas);
+  pintarNotas(notasFiltradas)
 }
 
 // Configuración de event listeners
 document.addEventListener('DOMContentLoaded', function() {
-  const filtroTexto = document.getElementById('filtroTexto');
-  const filtroRealizadas = document.getElementById('filtroRealizadas');
+  const filtroTexto = document.getElementById('filtroTexto')
+  const filtroRealizadas = document.getElementById('filtroRealizadas')
 
-  filtroTexto.addEventListener('keyup', aplicarFiltros);
-  filtroRealizadas.addEventListener('change', aplicarFiltros);
+  filtroTexto.addEventListener('keyup', aplicarFiltros)
+  filtroRealizadas.addEventListener('change', aplicarFiltros)
 
-  const guardarNotaBtn = document.getElementById('guardarNota');
+  const guardarNotaBtn = document.getElementById('guardarNota')
   guardarNotaBtn.addEventListener('click', function(event) {
-    event.preventDefault(); // Evita que el formulario se envíe
+    event.preventDefault()
 
-    let titulo = document.getElementById('titulo').value;
-    let texto = document.getElementById('texto').value;
+    let titulo = document.getElementById('titulo').value
+    let texto = document.getElementById('texto').value
 
     if (titulo.trim() === '' || texto.trim() === '') {
-      alert('Por favor, completa el título y el texto de la nota.');
-      return;
+      alert('Por favor, completa el título y el texto de la nota.')
+      return
     }
 
-    agregarNota(titulo, texto);
-    limpiarCampos();
+    agregarNota(titulo, texto)
+    limpiarCampos()
   });
 
   
 
-  pintarNotas(notas);
+  pintarNotas(notas)
 });
-
-
-inner
